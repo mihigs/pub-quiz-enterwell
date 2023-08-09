@@ -9,5 +9,27 @@
           "answer": "Ada Lovelace"
         }
       ]
+    },
+    {
+      "id": 2,
+      "name": "Mock Quiz II",
+      "questions": [
+        {
+          "id": 2,
+          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
+          "answer": "Ada Lovelace"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Mock Quiz III",
+      "questions": [
+        {
+          "id": 3,
+          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
+          "answer": "Ada Lovelace"
+        }
+      ]
     }
 ]
