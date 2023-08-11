@@ -36,4 +36,28 @@ const getAllQuestions = () => {
     });
 };
 
-export { getQuizzes, createQuiz, getQuiz, getAllQuestions };
+const deleteQuiz = (quizId) => {
+  return fetch(`http://quiz-maker.apidocs.enterwell.space/quizzes/${quizId}`, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+const updateQuiz = (quiz) => {
+  return fetch(`http://quiz-maker.apidocs.enterwell.space/quizzes/${quiz.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(quiz),
+  })
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+export { getQuizzes, createQuiz, getQuiz, getAllQuestions, deleteQuiz, updateQuiz };

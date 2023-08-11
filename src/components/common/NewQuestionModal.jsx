@@ -47,7 +47,6 @@ const NewQuestionModal = ({ open, onClose, onSubmit }) => {
                       }}
                 />
                 <TextField
-                    autoFocus
                     margin="dense"
                     id="answer"
                     label="Answer"

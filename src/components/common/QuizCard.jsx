@@ -7,6 +7,7 @@ import { removeQuiz } from "../../redux/reducer";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import SimpleDialog from "./SimpleDialog";
+import { deleteQuiz } from "../../services/mockApiService";
 
 const QuizCard = ({
     id,
@@ -25,7 +26,10 @@ const QuizCard = ({
     };
 
     const handleDelete = (id) => {
-      dispatch(removeQuiz(id));
+      deleteQuiz(id).then((response) => {
+        //todo: check if response successful
+        dispatch(removeQuiz(id));
+      });
     };
   
     const handleClose = () => {

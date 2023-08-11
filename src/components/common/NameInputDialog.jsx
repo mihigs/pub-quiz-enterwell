@@ -34,6 +34,11 @@ const NameInputDialog = ({ open, onClose, onSubmit }) => {
                     fullWidth
                     value={name}
                     onChange={handleNameChange}
+                    onKeyUp={(event) => {
+                        if (event.key === 'Enter') {
+                            handleSubmit(name);
+                        }
+                    }}
                 />
             </DialogContent>
             <DialogActions>

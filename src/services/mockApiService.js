@@ -1,13 +1,15 @@
 import quizzesMockData from "../data/quizzesMockData.json";
 import { store } from "../main.jsx";
+import { newQuiz, removeQuiz } from "../redux/reducer";
 
 const getQuizzes = () => {
   return Promise.resolve(quizzesMockData);
 };
 
 const createQuiz = (quizName) => {
+  //Return a promise with the quiz
   let mockResponse = {
-    id: quizzesMockData.length + Math.floor(Math.random() * 100), // random number between 0 and 100, to simulate a unique id
+    id: quizzesMockData.length + Math.floor(Math.random() * 100), // random number between to simulate a unique id
     name: quizName,
     questions: [],
   };
@@ -29,4 +31,12 @@ const getAllQuestions = () => {
   );
 };
 
-export { getQuizzes, createQuiz, getQuiz, getAllQuestions };
+const deleteQuiz = (quizId) => {
+  return Promise.resolve(quizId);
+};
+
+const putQuiz = (quiz) => {
+  return Promise.resolve(quiz);
+};
+
+export { getQuizzes, createQuiz, getQuiz, getAllQuestions, deleteQuiz, putQuiz };
