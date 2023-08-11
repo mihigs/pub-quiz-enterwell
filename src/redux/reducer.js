@@ -9,7 +9,7 @@ export const quizzesSlice = createSlice({
     replaceQuizzes: (state, action) => {
         state.value = action.payload
     },
-    addQuiz: (state, action) => {
+    newQuiz: (state, action) => {
       state.value = [...state.value, action.payload];
     },
     removeQuiz: (state, action) => {
@@ -17,5 +17,5 @@ export const quizzesSlice = createSlice({
     },
   },
 })
-export const { replaceQuizzes, addQuiz, removeQuiz } = quizzesSlice.actions
+export const { replaceQuizzes, newQuiz, removeQuiz } = quizzesSlice.actions
 export default quizzesSlice.reducer

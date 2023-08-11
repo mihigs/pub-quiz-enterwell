@@ -4,6 +4,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch } from "react-redux";
 import { removeQuiz } from "../../redux/reducer";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import SimpleDialog from "./SimpleDialog";
 
 const QuizCard = ({
     id,
@@ -12,23 +15,42 @@ const QuizCard = ({
     ...props
 }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  
+    const handleClickOpen = (event, id) => {
+      event.stopPropagation();
+      setDeleteDialogOpen(true);
+    };
+
+    const handleDelete = (id) => {
+      dispatch(removeQuiz(id));
+    };
+  
+    const handleClose = () => {
+      setDeleteDialogOpen(false);
+    };
 
   return (
     <>
-      <div className="border border-indigo-500 p-5 m-5 flex justify-between content-center rounded-md">
+      <div className="border border-indigo-500 p-5 m-5 flex justify-between content-center rounded-md" onClick={ () => navigate(`/quiz/${id}/${name}/edit`) }>
         <h1 className="font-bold leading-8">{name}</h1>
         <div className="flex gap-4">
-          <Button variant="outlined" startIcon={<DeleteIcon />} onClick={ () => dispatch(removeQuiz(id))}>
+          <Button variant="outlined" startIcon={<DeleteIcon />} onClick={ (event) => handleClickOpen(event, id)}>
             Delete
-          </Button>
-          <Button variant="outlined" startIcon={<EditIcon />}>
-            Edit
           </Button>
           <Button variant="outlined" startIcon={<PlayArrowIcon />}>
             Play
           </Button>
         </div>
       </div>
+
+      <SimpleDialog
+        open={deleteDialogOpen}
+        onClose={handleClose}
+        onConfirm={() => handleDelete(id)}
+      />
     </>
   );
 };
