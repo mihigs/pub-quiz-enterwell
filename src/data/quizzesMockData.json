@@ -7,7 +7,18 @@
           "id": 1,
           "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
           "answer": "Ada Lovelace"
+        },
+        {
+          "id": 2,
+          "question": "In which part of your body would you find the cruciate ligament?",
+          "answer": "Knee"
+        },
+        {
+          "id": 3,
+          "question": "What is the name of the main antagonist in the Shakespeare play Othello?",
+          "answer": "Iago"
         }
+
       ]
     },
     {

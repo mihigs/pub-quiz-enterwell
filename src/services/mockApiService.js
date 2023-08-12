@@ -17,9 +17,12 @@ const createQuiz = (quizName) => {
 };
 
 const getQuiz = (quizId) => {
-  return Promise.resolve(
-    store.getState().quizzes.value.find((quiz) => quiz.id === parseInt(quizId))
-  );
+  //Check if the quiz exists in the store
+  if (!store.getState().quizzes.value.find((quiz) => quiz.id === parseInt(quizId))) {
+    let quiz = quizzesMockData.find((quiz) => quiz.id === parseInt(quizId));
+    return Promise.resolve(quiz);
+  }
+  return Promise.resolve(store.getState().quizzes.value.find((quiz) => quiz.id === parseInt(quizId)));
 };
 
 const getAllQuestions = () => {
@@ -39,4 +42,11 @@ const putQuiz = (quiz) => {
   return Promise.resolve(quiz);
 };
 
-export { getQuizzes, createQuiz, getQuiz, getAllQuestions, deleteQuiz, putQuiz };
+export {
+  getQuizzes,
+  createQuiz,
+  getQuiz,
+  getAllQuestions,
+  deleteQuiz,
+  putQuiz,
+};

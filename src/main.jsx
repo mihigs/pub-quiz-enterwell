@@ -6,6 +6,7 @@ import EditQuiz from "./components/EditQuiz.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
+import PreviewQuiz from "./components/PreviewQuiz.jsx";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path: "/quiz/:quizId/:quizName/edit",
     element: <EditQuiz />,
   },
+  {
+    path: "/quiz/:quizId/preview",
+    element: <PreviewQuiz />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

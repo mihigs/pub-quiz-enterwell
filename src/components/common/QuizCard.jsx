@@ -25,6 +25,11 @@ const QuizCard = ({
       setDeleteDialogOpen(true);
     };
 
+    const handlePlayClicked = (event, id) => {
+      event.stopPropagation();
+      navigate(`/quiz/${id}/preview`);
+    };
+
     const handleDelete = (id) => {
       deleteQuiz(id).then((response) => {
         //todo: check if response successful
@@ -44,7 +49,7 @@ const QuizCard = ({
           <Button variant="outlined" startIcon={<DeleteIcon />} onClick={ (event) => handleClickOpen(event, id)}>
             Delete
           </Button>
-          <Button variant="outlined" startIcon={<PlayArrowIcon />}>
+          <Button variant="outlined" startIcon={<PlayArrowIcon />} onClick={ (event) => handlePlayClicked(event, id) } >
             Play
           </Button>
         </div>
