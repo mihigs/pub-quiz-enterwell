@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import QuizCard from "./common/QuizCard";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { replaceQuizzes, newQuiz } from "../redux/reducer";
+import { replaceQuizzes, removeQuiz } from "../redux/reducer";
+
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
+
+import QuizCard from "./common/QuizCard";
 import NameInputDialog from "./common/NameInputDialog";
 
 // Replace the imports with the following line to use the real api
+import { getQuizzes, createQuiz, deleteQuiz } from "../services/mockApiService";
 // import { getQuizzes, createQuiz } from "../services/apiService";
-import { getQuizzes, createQuiz } from "../services/mockApiService";
 
 const QuizList = () => {
   const quizzesData = useSelector((state) => state.quizzes.value);
@@ -25,24 +27,22 @@ const QuizList = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (name) => {
-    createQuiz(name).then((data) => {
-      let quiz = {
-        id: data.id,
-        name: name,
-        questions: [],
-      };
+  const handleSubmit = (quizName) => {
+      navigateTo(`/quiz/${quizName}/new`);
+  };
 
-      dispatch(newQuiz(quiz));
-      navigateTo(`/quiz/${data.id}/${name}/edit`);
+  const handleDeleteQuiz = (id) => {
+    deleteQuiz(id).then((response) => {
+      //TODO: check if response successful
+      dispatch(removeQuiz(id));
     });
   };
 
   useEffect(() => {
-    //Get the quizzes from the mockApi and dispatch the replaceQuizzes action
+    //Get the quizzes from the API and dispatch the replaceQuizzes action
     if (quizzesData.length === 0) {
-      getQuizzes().then((data) => {
-        dispatch(replaceQuizzes(data));
+      getQuizzes().then((response) => {
+        dispatch(replaceQuizzes(response));
       });
     }
   }, []);
@@ -61,7 +61,7 @@ const QuizList = () => {
           </Button>
         </div>
       </div>
-      <div>
+      <div className="h-[90vh] overflow-y-scroll">
         {/* Lists all the quizes */}
         {quizzesData?.filter((quiz) => !quiz.hidden).map((quiz, index) => (
             <QuizCard
@@ -69,10 +69,14 @@ const QuizList = () => {
                 id={quiz.id}
                 name={quiz.name}
                 questions={quiz.questions}
+                onClick={() => navigateTo(`/quiz/${quiz.id}/edit`)}
+                onDelete={handleDeleteQuiz}
+                onPlay={() => navigateTo(`/quiz/${quiz.id}/preview`)}
             />
         ))}
       </div>
 
+      {/* 'Create new quiz' dialog */}
       <NameInputDialog
         open={open}
         onClose={handleClose}

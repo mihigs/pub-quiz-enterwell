@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 // Replace the imports with the following line to use the real api
 import { getQuiz } from "../services/mockApiService";
@@ -9,42 +9,42 @@ import { getQuiz } from "../services/mockApiService";
 
 const PreviewQuiz = () => {
   const { quizId } = useParams();
+  
   const [quiz, setQuiz] = useState({});
+  const [quizStarted, setQuizStarted] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [answerVisible, setAnswerVisible] = useState(false);
-  const [quizStarted, setQuizStarted] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+
   const navigateTo = useNavigate();
 
-  const goToStep = (step) => {
-    setActiveStep(step);
-  };
-
   const handleNext = () => {
-    goToStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setAnswerVisible(false);
   };
 
   const handleBack = () => {
-    goToStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
     setAnswerVisible(false);
   };
 
   const handleReset = () => {
-    goToStep(0);
+    setActiveStep(0);
     setAnswerVisible(false);
     setQuizStarted(false);
     setLinkCopied(false);
-    };
+  };
 
-    const handleFinish = () => {
-        navigateTo('/');
-    }
+  const handleFinish = () => {
+    navigateTo("/");
+  };
 
-    const handleCopyLinkClicked = () => {
-        navigator.clipboard.writeText(window.location.href);
-        setLinkCopied(true);
-    }
+  const handleCopyLinkClicked = () => {
+    //Copy the game link to the clipboard
+    let url = window.location.href;
+    navigator.clipboard.writeText(url);
+    setLinkCopied(true);
+  };
 
   useEffect(() => {
     //Get the quiz from the API
@@ -55,15 +55,22 @@ const PreviewQuiz = () => {
 
   return (
     <div className="flex items-center h-[100vh] w-full text-2xl">
+      {/* Initial slide */}
       {!quizStarted && (
         <div className="ml-auto mr-auto w-4/6 text-center flex-col flex gap-5">
           <div className=" h-[35vh] flex flex-col gap-5">
             <p className="overflow-y-auto">Are you ready to start the quiz?</p>
-            {/* Allow users to copy the link to the quiz preview */}
             <div className="w-fit m-auto mt-10 gap-5 flex flex-col">
-            <p className="text-xl">Share this link with your friends</p>
-            <p onClick={handleCopyLinkClicked} className="overflow-y-auto bg-slate-900 p-3 hover:bg-slate-800">{window.location.href}</p>
-            <p className={`text-sm ${linkCopied ? '' : 'invisible'}`}>Link copied!</p>
+              <p className="text-xl">Share this link with your friends</p>
+              <p
+                onClick={handleCopyLinkClicked}
+                className="overflow-y-auto bg-slate-900 p-3 hover:bg-slate-800"
+              >
+                {window.location.href}
+              </p>
+              <p className={`text-sm ${linkCopied ? "" : "invisible"}`}>
+                Link copied!
+              </p>
             </div>
           </div>
           <div>
@@ -72,8 +79,10 @@ const PreviewQuiz = () => {
         </div>
       )}
 
+      {/* Quiz slides */}
       {quizStarted && quiz?.questions?.length > 0 && (
         <div className="ml-auto mr-auto w-4/6 text-center flex-col flex gap-5">
+          {/* Question & Answer */}
           <div className=" h-[35vh] flex flex-col gap-5 justify-between">
             <p className="overflow-y-auto">
               {quiz?.questions[activeStep]?.question}
@@ -82,6 +91,7 @@ const PreviewQuiz = () => {
               {quiz?.questions[activeStep]?.answer}
             </p>
           </div>
+          {/* Quiz Controls */}
           <div>
             {answerVisible && (
               <Button onClick={() => setAnswerVisible(false)}>

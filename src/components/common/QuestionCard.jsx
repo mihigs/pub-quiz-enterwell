@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const QuestionCard = ({ id, question, answer, used, onAction, ...props }) => {
+const QuestionCard = ({ id, question, answer, used, onAction }) => {
   const handleAction = () => {
     if(onAction) {
       onAction();

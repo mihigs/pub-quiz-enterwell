@@ -17,8 +17,27 @@
           "id": 3,
           "question": "What is the name of the main antagonist in the Shakespeare play Othello?",
           "answer": "Iago"
+        },
+        {
+          "id": 4,
+          "question": "Where is the smallest bone in the human body?",
+          "answer": "Ear"
+        },
+        {
+          "id": 5,
+          "question": "How many of Henry VIII’s wives were called Catherine?",
+          "answer": "Three"
+        },
+        {
+          "id": 6,
+          "question": "From which US city do the band The Killers originate?",
+          "answer": "Las Vegas"
+        },
+        {
+          "id": 7,
+          "question": "What is the capital of Australia?",
+          "answer": "Canberra"
         }
-
       ]
     },
     {
@@ -36,6 +55,93 @@
       "id": 3,
       "name": "Mock Quiz III",
       "questions": [
+        {
+          "id": 3,
+          "question": "What is the name of the main antagonist in the Shakespeare play Othello?",
+          "answer": "Iago"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Enterwell Quiz II",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
+          "answer": "Ada Lovelace"
+        },
+        {
+          "id": 2,
+          "question": "In which part of your body would you find the cruciate ligament?",
+          "answer": "Knee"
+        },
+        {
+          "id": 3,
+          "question": "What is the name of the main antagonist in the Shakespeare play Othello?",
+          "answer": "Iago"
+        }
+
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Enterwell Quiz III",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
+          "answer": "Ada Lovelace"
+        },
+        {
+          "id": 2,
+          "question": "In which part of your body would you find the cruciate ligament?",
+          "answer": "Knee"
+        },
+        {
+          "id": 3,
+          "question": "What is the name of the main antagonist in the Shakespeare play Othello?",
+          "answer": "Iago"
+        }
+
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Enterwell Quiz IV",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
+          "answer": "Ada Lovelace"
+        },
+        {
+          "id": 2,
+          "question": "In which part of your body would you find the cruciate ligament?",
+          "answer": "Knee"
+        },
+        {
+          "id": 3,
+          "question": "What is the name of the main antagonist in the Shakespeare play Othello?",
+          "answer": "Iago"
+        }
+
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Enterwell Quiz VI",
+      "questions": [
+        {
+          "id": 1,
+          "question": "Who was the English mathematician and writer widely considered as the worldq's first computer programmer for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine?",
+          "answer": "Ada Lovelace"
+        },
+        {
+          "id": 2,
+          "question": "In which part of your body would you find the cruciate ligament?",
+          "answer": "Knee"
+        },
         {
           "id": 3,
           "question": "What is the name of the main antagonist in the Shakespeare play Othello?",

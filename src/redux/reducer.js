@@ -36,4 +36,4 @@ export const quizzesSlice = createSlice({
 })
 
 export const { replaceQuizzes, newQuiz, removeQuiz, updateQuiz } = quizzesSlice.actions
-export default quizzesSlice.reducer
+export default quizzesSlice.reducer;
