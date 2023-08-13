@@ -37,6 +37,11 @@
           "id": 7,
           "question": "What is the capital of Australia?",
           "answer": "Canberra"
+        },
+        {
+          "id": 8,
+          "question": "What is the capital of New Zealand?",
+          "answer": "Wellington"
         }
       ]
     },

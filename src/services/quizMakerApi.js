@@ -1,5 +1,6 @@
 const getQuizzes = () => {
-  return fetch("http://quiz-maker.apidocs.enterwell.space/quizzes")
+  console.log(import.meta.env.VITE_API)
+  return fetch(`${import.meta.env.VITE_API}/quizzes`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);
@@ -7,7 +8,7 @@ const getQuizzes = () => {
 };
 
 const createQuiz = (quizName) => {
-  return fetch("http://quiz-maker.apidocs.enterwell.space/quizzes", {
+  return fetch(`${import.meta.env.VITE_API}/quizzes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +22,7 @@ const createQuiz = (quizName) => {
 };
 
 const getQuiz = (quizId) => {
-  return fetch(`http://quiz-maker.apidocs.enterwell.space/quizzes/${quizId}`)
+  return fetch(`${import.meta.env.VITE_API}/quizzes/${quizId}`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);
@@ -29,7 +30,7 @@ const getQuiz = (quizId) => {
 };
 
 const getAllQuestions = () => {
-  return fetch("http://quiz-maker.apidocs.enterwell.space/questions")
+  return fetch(`${import.meta.env.VITE_API}/questions`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);
@@ -37,7 +38,7 @@ const getAllQuestions = () => {
 };
 
 const deleteQuiz = (quizId) => {
-  return fetch(`http://quiz-maker.apidocs.enterwell.space/quizzes/${quizId}`, {
+  return fetch(`${import.meta.env.VITE_API}/quizzes/${quizId}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -47,7 +48,7 @@ const deleteQuiz = (quizId) => {
 };
 
 const updateQuiz = (quiz) => {
-  return fetch(`http://quiz-maker.apidocs.enterwell.space/quizzes/${quiz.id}`, {
+  return fetch(`${import.meta.env.VITE_API}/quizzes/${quiz.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

@@ -1,16 +1,10 @@
 import * as mockApi from './mockApi'
 import * as quizMakerApi from './quizMakerApi'
 
-//Switch between mockApi and quizMakerApi
-const apiConfig = {
-    useMockApi: true,
-}
+const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true';
+console.log('useMockApi', useMockApi)
 
-const { getQuizzes, createQuiz, getQuiz, getAllQuestions, deleteQuiz, updateQuiz } = apiConfig.useMockApi ? mockApi : quizMakerApi;
-
-export default{
-    apiConfig
-};
+const { getQuizzes, createQuiz, getQuiz, getAllQuestions, deleteQuiz, updateQuiz } = useMockApi ? mockApi : quizMakerApi;
 
 export {
     getQuizzes,
