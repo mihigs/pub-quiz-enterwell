@@ -3,9 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { Button } from "@mui/material";
 
-// Replace the imports with the following line to use the real api
-import { getQuiz } from "../services/mockApiService";
-// import { getQuiz } from "../services/apiService";
+import { getQuiz } from "../services/apiService.js";
 
 const PreviewQuiz = () => {
   const { quizId } = useParams();

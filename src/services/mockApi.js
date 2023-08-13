@@ -71,7 +71,7 @@ const deleteQuiz = (quizId) => {
   return Promise.resolve(quiz);
 };
 
-const putQuiz = (quiz) => {
+const updateQuiz = (quiz) => {
   //Check if there are new questions, if so, generate unique IDs for them
   quiz.questions = generateUniqueQuestionsId(quiz.questions);
   //Returns a promise with the quiz object, simulating a successful response from the server
@@ -79,12 +79,10 @@ const putQuiz = (quiz) => {
 };
 
 export {
-  generateUniqueQuizId,
-  generateUniqueQuestionsId,
   getQuizzes,
   createQuiz,
   getQuiz,
   getAllQuestions,
   deleteQuiz,
-  putQuiz,
+  updateQuiz
 };

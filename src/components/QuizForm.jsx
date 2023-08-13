@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updateQuiz, newQuiz } from "../redux/reducer";
+import { editQuiz, newQuiz } from "../redux/reducer";
 import PropTypes from "prop-types";
 
 import { Button, Input } from "@mui/material";
@@ -12,9 +12,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import NewQuestionModal from "./common/NewQuestionModal";
 import QuestionCard from "./common/QuestionCard";
 
-// Replace the imports with the following line to use the real api
-import { getQuiz, getAllQuestions, putQuiz, createQuiz } from "../services/mockApiService";
-// import { getQuizzes, getAllQuestions, putQuiz } from "../services/apiService";
+import { getAllQuestions, updateQuiz, createQuiz } from "../services/apiService.js";
 
 const QuizForm = ({isNewQuiz}) => {
   const { quizName, quizId } = useParams();
@@ -27,11 +25,6 @@ const QuizForm = ({isNewQuiz}) => {
 
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
-
-  const handleNewQuestion = () => {
-    //Open the new question modal
-    setNewQuestionModalOpen(true);
-  };
 
   const handleSubmitQuestion = (question) => {
     //Add the question to the quiz
@@ -87,11 +80,6 @@ const QuizForm = ({isNewQuiz}) => {
     }
   };
 
-  const handleCloseNewQuestionModal = () => {
-    //Close the new question modal
-    setNewQuestionModalOpen(false);
-  };
-
   const toggleEditQuestionName = () => {
     //Toggle the edit question modal
     setEditQuestionName(!editQuestionName);
@@ -118,8 +106,8 @@ const QuizForm = ({isNewQuiz}) => {
       });
     } else {
       //PUT the quiz to the API
-      putQuiz(updatedQuiz).then((response) => {
-        dispatch(updateQuiz(response));
+      updateQuiz(updatedQuiz).then((response) => {
+        dispatch(editQuiz(response));
       });
     }
     //Close the edit quiz page
@@ -186,7 +174,7 @@ const QuizForm = ({isNewQuiz}) => {
           <Button
             variant="outlined"
             startIcon={<AddIcon />}
-            onClick={handleNewQuestion}
+            onClick={() => setNewQuestionModalOpen(true)}
           >
             Add Question
           </Button>
@@ -233,7 +221,7 @@ const QuizForm = ({isNewQuiz}) => {
       </div>
       <NewQuestionModal
         open={newQuestionModalOpen}
-        onClose={handleCloseNewQuestionModal}
+        onClose={() => setNewQuestionModalOpen(false)}
         onSubmit={handleSubmitQuestion}
       />
     </div>

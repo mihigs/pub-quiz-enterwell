@@ -9,9 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import QuizCard from "./common/QuizCard";
 import NameInputDialog from "./common/NameInputDialog";
 
-// Replace the imports with the following line to use the real api
-import { getQuizzes, deleteQuiz } from "../services/mockApiService";
-// import { getQuizzes, deleteQuiz } from "../services/apiService";
+import { getQuizzes, deleteQuiz } from "../services/apiService.js";
 
 const QuizList = () => {
   const quizzesData = useSelector((state) => state.quizzes.value);
@@ -40,12 +38,12 @@ const QuizList = () => {
 
   useEffect(() => {
     //Get the quizzes from the API and dispatch the replaceQuizzes action
-    if (quizzesData.length === 0) {
+    if (quizzesData?.length === 0) {
       getQuizzes().then((response) => {
         dispatch(replaceQuizzes(response));
       });
     }
-  }, [dispatch, quizzesData.length]);
+  }, [dispatch, quizzesData?.length]);
 
   return (
     <>

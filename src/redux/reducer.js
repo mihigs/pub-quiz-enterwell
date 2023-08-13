@@ -22,7 +22,7 @@ export const quizzesSlice = createSlice({
         });
         state.value = updatedQuizzes;
     },
-    updateQuiz: (state, action) => {
+    editQuiz: (state, action) => {
         //Update the quiz
         let updatedQuizzes = state.value.map((quiz) => {
             if (quiz.id === action.payload.id) {
@@ -35,5 +35,5 @@ export const quizzesSlice = createSlice({
   },
 })
 
-export const { replaceQuizzes, newQuiz, removeQuiz, updateQuiz } = quizzesSlice.actions
+export const { replaceQuizzes, newQuiz, removeQuiz, editQuiz } = quizzesSlice.actions
 export default quizzesSlice.reducer;
