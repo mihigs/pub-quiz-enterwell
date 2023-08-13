@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { replaceQuizzes, removeQuiz, addQuestionsFromQuizzes } from "../redux/reducer";
+import { replaceQuizzes, removeQuiz } from "../redux/quizzesReducer";
+import { addQuestionsFromQuizzes } from "../redux/questionsReducer";
 
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";

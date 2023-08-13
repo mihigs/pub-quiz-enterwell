@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { questionsReducer, quizzesReducer } from './reducer.js'
+import quizzesReducer from './quizzesReducer.js'
+import questionsReducer from './questionsReducer.js'
 
 export default configureStore({
   reducer: {
