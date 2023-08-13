@@ -9,7 +9,7 @@ import { getQuiz } from "../services/mockApiService";
 
 const PreviewQuiz = () => {
   const { quizId } = useParams();
-  
+
   const [quiz, setQuiz] = useState({});
   const [quizStarted, setQuizStarted] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
@@ -51,7 +51,7 @@ const PreviewQuiz = () => {
     getQuiz(quizId).then((data) => {
       setQuiz(data);
     });
-  }, []);
+  }, [quizId]);
 
   return (
     <div className="flex items-center h-[100vh] w-full text-2xl">

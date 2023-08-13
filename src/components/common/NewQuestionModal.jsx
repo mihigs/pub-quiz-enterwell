@@ -1,7 +1,8 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 
-const NewQuestionModal = ({ open, onClose, onSubmit }) => {
+const NewQuestionModal = ({open, onClose, onSubmit}) => {
     const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
 
@@ -69,5 +70,17 @@ const NewQuestionModal = ({ open, onClose, onSubmit }) => {
         </Dialog>
     )
 }
+
+NewQuestionModal.defaultProps = {
+    open: false,
+    onClose: () => {},
+    onSubmit: () => {},
+};
+
+NewQuestionModal.propTypes = {
+    open: PropTypes.bool,
+    onClose: PropTypes.func,
+    onSubmit: PropTypes.func,
+};
 
 export default NewQuestionModal;

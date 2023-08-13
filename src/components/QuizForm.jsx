@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateQuiz, newQuiz } from "../redux/reducer";
+import PropTypes from "prop-types";
 
 import { Button, Input } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -15,7 +16,7 @@ import QuestionCard from "./common/QuestionCard";
 import { getQuiz, getAllQuestions, putQuiz, createQuiz } from "../services/mockApiService";
 // import { getQuizzes, getAllQuestions, putQuiz } from "../services/apiService";
 
-const QuizForm = ({ isNewQuiz }) => {
+const QuizForm = ({isNewQuiz}) => {
   const { quizName, quizId } = useParams();
 
   const [editedQuizName, setEditedQuizName] = useState(quizName || "");
@@ -70,7 +71,7 @@ const QuizForm = ({ isNewQuiz }) => {
       //Add the question to the quiz
       let updatedQuiz = { ...quiz };
       updatedQuiz.questions = [
-        ...quiz?.questions,
+        ...quiz.questions || [],
         {
           id: questionToBeMoved.id,
           question: questionToBeMoved.question,
@@ -131,7 +132,7 @@ const QuizForm = ({ isNewQuiz }) => {
         //If the quiz is new, create a new quiz object
         if (isNewQuiz) {
           quizData = {
-            name: editedQuizName,
+            name: quizName,
             questions: [],
           };
           setQuiz(quizData);
@@ -154,7 +155,8 @@ const QuizForm = ({ isNewQuiz }) => {
         setAvailableQuestions(filteredQuestions);
       }
     )();
-  }, []);
+    console.log('useEffect')
+  }, [quizName, isNewQuiz, quizId]);
 
   return (
     <div>
@@ -239,7 +241,11 @@ const QuizForm = ({ isNewQuiz }) => {
 };
 
 QuizForm.defaultProps = {
-  newQuiz: false,
+  isNewQuiz: false,
+};
+
+QuizForm.propTypes = {
+  isNewQuiz: PropTypes.bool,
 };
 
 export default QuizForm;

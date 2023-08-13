@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { removeQuiz } from "../../redux/reducer";
-import { deleteQuiz } from "../../services/mockApiService";
+import PropTypes from "prop-types";
 
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -16,8 +14,6 @@ const QuizCard = ({
     onDelete,
     onPlay,
 }) => {
-    const dispatch = useDispatch();
-
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
     const handleCardClicked = () => {
@@ -26,7 +22,7 @@ const QuizCard = ({
       }
     };
   
-    const handleDeleteClicked = (event, id) => {
+    const handleDeleteClicked = (event) => {
       event.stopPropagation();
       setDeleteDialogOpen(true);
     };
@@ -63,6 +59,22 @@ const QuizCard = ({
       />
     </>
   );
+};
+
+QuizCard.defaultProps = {
+  id: "",
+  name: "",
+  onClick: () => {},
+  onDelete: () => {},
+  onPlay: () => {},
+};
+
+QuizCard.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  onClick: PropTypes.func,
+  onDelete: PropTypes.func,
+  onPlay: PropTypes.func,
 };
 
 export default QuizCard;

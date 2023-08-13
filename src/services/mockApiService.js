@@ -1,6 +1,5 @@
 import quizzesMockData from "../data/quizzesMockData.json";
 import { store } from "../main.jsx";
-import { newQuiz, removeQuiz } from "../redux/reducer"; //TODO: Review
 
 const generateUniqueQuizId = () => {
   //Get the highest ID from the quizzes in the store

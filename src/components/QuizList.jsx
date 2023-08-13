@@ -10,8 +10,8 @@ import QuizCard from "./common/QuizCard";
 import NameInputDialog from "./common/NameInputDialog";
 
 // Replace the imports with the following line to use the real api
-import { getQuizzes, createQuiz, deleteQuiz } from "../services/mockApiService";
-// import { getQuizzes, createQuiz } from "../services/apiService";
+import { getQuizzes, deleteQuiz } from "../services/mockApiService";
+// import { getQuizzes, deleteQuiz } from "../services/apiService";
 
 const QuizList = () => {
   const quizzesData = useSelector((state) => state.quizzes.value);
@@ -32,7 +32,7 @@ const QuizList = () => {
   };
 
   const handleDeleteQuiz = (id) => {
-    deleteQuiz(id).then((response) => {
+    deleteQuiz(id).then(() => {
       //TODO: check if response successful
       dispatch(removeQuiz(id));
     });
@@ -45,7 +45,7 @@ const QuizList = () => {
         dispatch(replaceQuizzes(response));
       });
     }
-  }, []);
+  }, [dispatch, quizzesData.length]);
 
   return (
     <>

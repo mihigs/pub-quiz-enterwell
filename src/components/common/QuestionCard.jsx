@@ -1,9 +1,8 @@
-import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import PropTypes from "prop-types";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-const QuestionCard = ({ id, question, answer, used, onAction }) => {
+const QuestionCard = ({question, answer, used, onAction}) => {
   const handleAction = () => {
     if(onAction) {
       onAction();
@@ -28,6 +27,20 @@ const QuestionCard = ({ id, question, answer, used, onAction }) => {
       </div>
     </div>
   );
+};
+
+QuestionCard.defaultProps = {
+  question: "",
+  answer: "",
+  used: false,
+  onAction: () => {},
+};
+
+QuestionCard.propTypes = {
+  question: PropTypes.string,
+  answer: PropTypes.string,
+  used: PropTypes.bool,
+  onAction: PropTypes.func,
 };
 
 export default QuestionCard;

@@ -1,6 +1,7 @@
+import PropTypes from "prop-types";
 import { Dialog, DialogTitle, Button } from "@mui/material";
 
-const SimpleDialog = ({ open, dialogMessage, onClose, onConfirm }) => {
+const SimpleDialog = ({open, dialogMessage, onClose, onConfirm}) => {
   const handleClose = () => {
     onClose();
   };
@@ -28,6 +29,13 @@ SimpleDialog.defaultProps = {
   dialogMessage: "Are you sure?",
   onClose: () => {},
   onConfirm: () => {},
+};
+
+SimpleDialog.propTypes = {
+  open: PropTypes.bool,
+  dialogMessage: PropTypes.string,
+  onClose: PropTypes.func,
+  onConfirm: PropTypes.func,
 };
 
 export default SimpleDialog;

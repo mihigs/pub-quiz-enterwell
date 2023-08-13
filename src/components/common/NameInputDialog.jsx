@@ -1,7 +1,8 @@
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 
-const NameInputDialog = ({ open, onClose, onSubmit }) => {
+const NameInputDialog = ({open, onClose, onSubmit}) => {
     const [name, setName] = useState("");
 
     const handleClose = () => {
@@ -48,5 +49,17 @@ const NameInputDialog = ({ open, onClose, onSubmit }) => {
         </Dialog>
     )
 }
+
+NameInputDialog.defaultProps = {
+    open: false,
+    onClose: () => {},
+    onSubmit: () => {},
+};
+
+NameInputDialog.propTypes = {
+    open: PropTypes.bool,
+    onClose: PropTypes.func,
+    onSubmit: PropTypes.func,
+};
 
 export default NameInputDialog;
