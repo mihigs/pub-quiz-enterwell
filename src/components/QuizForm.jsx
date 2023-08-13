@@ -29,6 +29,9 @@ const QuizForm = ({isNewQuiz}) => {
 
   const handleSubmitQuestion = (question) => {
     //TODO: check if question already exists
+    if(question.question === "" || question.answer === "") return;
+    //Close the modal
+    setNewQuestionModalOpen(false);
     //Add the question to the quiz
     let updatedQuiz = { ...quiz };
     updatedQuiz.questions = [
@@ -43,6 +46,7 @@ const QuizForm = ({isNewQuiz}) => {
     //Add the question to the store
     dispatch(addQuestion(question));
 
+    //Remove the question from the available questions
     setAvailableQuestions(
       availableQuestions.filter(
         (availableQuestion) => availableQuestion.question !== question.question

@@ -16,7 +16,6 @@ const NewQuestionModal = ({open, onClose, onSubmit}) => {
         if(onSubmit){
             onSubmit(name);
         }
-        handleClose();
     };
 
     const handleQuestionChange = (event) => {

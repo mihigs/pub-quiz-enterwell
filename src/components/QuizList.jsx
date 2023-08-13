@@ -27,7 +27,9 @@ const QuizList = () => {
   };
 
   const handleSubmit = (quizName) => {
-      navigateTo(`/quiz/${quizName}/new`);
+    if (quizName === "") return;
+    navigateTo(`/quiz/${quizName}/new`);
+    handleClose();
   };
 
   const handleDeleteQuiz = (id) => {

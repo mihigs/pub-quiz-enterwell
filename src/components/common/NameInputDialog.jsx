@@ -15,7 +15,6 @@ const NameInputDialog = ({open, onClose, onSubmit}) => {
         if(onSubmit){
             onSubmit(name);
         }
-        handleClose();
     };
 
     const handleNameChange = (event) => {
