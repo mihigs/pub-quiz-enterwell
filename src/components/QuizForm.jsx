@@ -12,7 +12,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import NewQuestionModal from "./common/NewQuestionModal";
 import QuestionCard from "./common/QuestionCard";
 
-import { getAllQuestions, updateQuiz, createQuiz } from "../services/apiService.js";
+import { getQuiz, getAllQuestions, updateQuiz, createQuiz } from "../services/apiService.js";
 
 const QuizForm = ({isNewQuiz}) => {
   const { quizName, quizId } = useParams();
@@ -148,9 +148,9 @@ const QuizForm = ({isNewQuiz}) => {
 
   return (
     <div>
-      <div className="flex justify-between p-[1rem]">
+      <div className="p-[1rem] flex gap-10 justify-end sm:justify-between flex-col sm:flex-row">
         {/* Edit quiz name */}
-        <div className="flex items-center justify-between w-1/3 h-[3rem] gap-5">
+        <div className="flex items-center justify-between w-full sm:w-1/3 md:w-1/3 xl:w-1/4 h-[3rem] gap-5">
           {editQuestionName ? (
             <Input
               autoFocus
@@ -170,7 +170,7 @@ const QuizForm = ({isNewQuiz}) => {
           )}
           <EditIcon onClick={toggleEditQuestionName} />
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center justify-end">
           <Button
             variant="outlined"
             startIcon={<AddIcon />}
@@ -188,9 +188,24 @@ const QuizForm = ({isNewQuiz}) => {
         </div>
       </div>
 
-      <div className="flex h-[85vh]">
-        <div className="w-1/2 m-5">
-          <div className="h-full p-5 border border-indigo-500 rounded-md overflow-y-scroll">
+      <div className="flex h-[85vh] flex-col md:flex-row overflow-y-scroll pb-[8rem] md:pb-0">
+        <p className="pl-3 md:hidden">Available questions</p>
+        <div className="md:w-1/2 border border-indigo-500 md:p-5 m-5 rounded-md md:overflow-y-scroll">
+          {/* List all the unused available questions */}
+          {availableQuestions?.map((question, index) => (
+            <QuestionCard
+              key={index}
+              id={question.id}
+              question={question.question}
+              answer={question.answer}
+              used={false}
+              onAction={() => handleSwitchQuestion(question, false)}
+            />
+          ))}
+        </div>
+        <p className="pl-3 md:hidden">Used questions</p>
+        <div className="md:w-1/2 m-5">
+          <div className="h-full border border-indigo-500 md:p-5 rounded-md overflow-y-scroll">
             {/* List all the used questions */}
             {quiz?.questions?.map((question, index) => (
               <QuestionCard
@@ -203,20 +218,7 @@ const QuizForm = ({isNewQuiz}) => {
               />
             ))}
           </div>
-          <p>Questions: {quiz?.questions?.length | 0}</p>
-        </div>
-        <div className="w-1/2 border border-indigo-500 p-5 m-5 rounded-md overflow-y-scroll">
-          {/* List all the unused available questions */}
-          {availableQuestions?.map((question, index) => (
-            <QuestionCard
-              key={index}
-              id={question.id}
-              question={question.question}
-              answer={question.answer}
-              used={false}
-              onAction={() => handleSwitchQuestion(question, false)}
-            />
-          ))}
+          <p className="text-right">Questions: {quiz?.questions?.length | 0}</p>
         </div>
       </div>
       <NewQuestionModal

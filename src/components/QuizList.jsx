@@ -48,8 +48,8 @@ const QuizList = () => {
   return (
     <>
       <div className="flex justify-between p-[1rem]">
-        <h1 className="text-4xl">Quizzes List</h1>
-        <div>
+        <h1 className="text-4xl">Quizzes</h1>
+        <div className="pt-2">
           <Button
             variant="outlined"
             startIcon={<AddIcon />}

@@ -40,9 +40,9 @@ const QuizCard = ({
 
   return (
     <>
-      <div className="border border-indigo-500 p-5 m-5 flex justify-between content-center rounded-md" onClick={handleCardClicked}>
-        <h1 className="font-bold leading-8">{name}</h1>
-        <div className="flex gap-4">
+      <div className="border border-indigo-500 p-5 m-5 flex justify-between content-center rounded-md flex-col sm:flex-row" onClick={handleCardClicked}>
+        <h1 className="font-bold leading-8 mb-5 text-center sm:text-left sm:mb-0">{name}</h1>
+        <div className="flex gap-4 justify-center">
           <Button variant="outlined" startIcon={<DeleteIcon />} onClick={ (event) => handleDeleteClicked(event, id)}>
             Delete
           </Button>
