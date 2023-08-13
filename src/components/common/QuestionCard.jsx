@@ -10,7 +10,7 @@ const QuestionCard = ({question, answer, used, onAction}) => {
   };
 
   return (
-    <div className="border border-indigo-500 p-3 m-5 rounded-md">
+    <div className="border border-indigo-500 p-3 m-5 rounded-md bg-[#272727]">
       <div className="flex-col p-[1rem]">
         <p className="">Q: {question}</p>
       </div>

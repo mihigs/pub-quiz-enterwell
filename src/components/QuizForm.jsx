@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { editQuiz, newQuiz } from "../redux/reducer";
+import { editQuiz, newQuiz, addQuestion } from "../redux/reducer";
 import PropTypes from "prop-types";
 
 import { Button, Input } from "@mui/material";
@@ -36,7 +36,11 @@ const QuizForm = ({isNewQuiz}) => {
         answer: question.answer,
       },
     ];
+    //Update the quiz
     setQuiz(updatedQuiz);
+    //Add the question to the store
+    dispatch(addQuestion(question));
+
     setAvailableQuestions(
       availableQuestions.filter(
         (availableQuestion) => availableQuestion.question !== question.question
@@ -137,7 +141,7 @@ const QuizForm = ({isNewQuiz}) => {
         //Filter out the questions that are already used in the quiz
         let filteredQuestions = data.filter((item) => {
           return !quizData.questions?.some(
-            (usedQuestion) => usedQuestion.id === item.id
+            (usedQuestion) => usedQuestion.question === item.question
           );
         });
         setAvailableQuestions(filteredQuestions);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { replaceQuizzes, removeQuiz } from "../redux/reducer";
+import { replaceQuizzes, removeQuiz, addQuestionsFromQuizzes } from "../redux/reducer";
 
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -40,7 +40,10 @@ const QuizList = () => {
     //Get the quizzes from the API and dispatch the replaceQuizzes action
     if (quizzesData?.length === 0) {
       getQuizzes().then((response) => {
+        //Add the quizzes to the store
         dispatch(replaceQuizzes(response));
+        //Add the questions to the store
+        dispatch(addQuestionsFromQuizzes(response));
       });
     }
   }, [dispatch, quizzesData?.length]);

@@ -55,14 +55,9 @@ const getQuiz = (quizId) => {
 
 const getAllQuestions = () => {
   //Get all the unique questions from the store, simulating a call to the server
-  let quizzes = store.getState().quizzes.value;
-  return Promise.resolve(
-    quizzes.reduce((acc, quiz) => {
-      return [...acc, ...quiz.questions];
-    }, [])
-    .filter((question, index, self) => self
-    .findIndex((q) => q.id === question.id) === index)
-  );
+  let questions = store.getState().questions.value;
+  debugger;
+  return Promise.resolve(questions);
 };
 
 const deleteQuiz = (quizId) => {
